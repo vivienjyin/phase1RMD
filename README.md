@@ -1,5 +1,6 @@
 # phase1RMD
 phase1RMD R package
+
 Author: Jun (Vivien) Yin
 
 ## Load an example of the patient efficacy data
