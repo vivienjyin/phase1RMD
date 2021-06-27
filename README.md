@@ -1,13 +1,36 @@
 # phase1RMD
 phase1RMD R package
+Author: Jun (Vivien) Yin
 
+## Load an example of the patient efficacy data
 ```
 > #load the patient efficacy data
 > data(eff_dat)
-> #load the patient toxicity data
-> data(tox_dat)
+> head(eff_dat)
+            subID dose    Efficacy
+1 cohort1subject1    1 0.014692986
+2 cohort1subject2    1 0.005370450
+3 cohort1subject3    1 0.004324666
+4 cohort2subject1    2 0.005531986
+5 cohort2subject2    2 0.300249297
+6 cohort2subject3    2 0.002631852
 ```
 
+## Load an example of the patient toxicity data
+```
+> #load the patient toxicity data
+> data(tox_dat)
+> head(tox_dat)
+            subID dose cycle nTTP DLT
+1 cohort1subject1    1     1  0.0   0
+2 cohort1subject2    1     1  0.0   0
+3 cohort1subject3    1     1  0.0   0
+4 cohort1subject1    1     2  0.2   0
+5 cohort1subject2    1     2  0.0   0
+6 cohort1subject3    1     2  0.0   0
+```
+
+## Load an example of the patient toxicity data
 ```
 > RunRMDEFF(efficacy.dat = eff_dat, toxicity.dat = tox_dat)
 Model : RMD with longitudinal toxicity
