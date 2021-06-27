@@ -30,7 +30,7 @@ Author: Jun (Vivien) Yin
 6 cohort1subject3    1     2  0.0   0
 ```
 
-## Load an example of the patient toxicity data
+## Recommend next dose based on toxicity and efficacy data
 ```
 > RunRMDEFF(efficacy.dat = eff_dat, toxicity.dat = tox_dat)
 Model : RMD with longitudinal toxicity
@@ -73,4 +73,52 @@ efficacy_profile 0.05793578 0.1812367 0.3351263 0.5196046 0.7346715 0.9803271
 
 $allow.doses
 [1] 1 2 3 4 5
+```
+
+## Simulate operating characteristics 
+### Define prior distribution and toxicity matrix for simulation
+```
+> #Define prior distributions
+> control <- list(
++   beta.dose = parm("normal", mean = 0, var = 1000),
++   beta.other = parm("normal", mean = 0, var = 1000 ),
++   gamma = parm("normal", mean = 0, var = 100 ),
++   s2.gamma = parm("invgamma", shape = 0.001, scale = 0.001),
++   s2.epsilon = parm("invgamma", shape = 0.001, scale = 0.001)
++ )
+
+> #Generate the toxicity matrix
+> tox.matrix <- GenToxProb(
++ toxtype = c("Renal", "Neuro", "Heme"),
++ intercept.alpha = c(2, 3, 4.2, 5.7),
++ coef.beta = c(-0.2, -0.4, -0.7),
++ cycle.gamma = 0)
+```
+
+### Simulate trial characteristics, allocation, recommendation rate
+
+```
+> #Simulate trial characteristics based on the toxicity matrix
+> simu <- SimRMD(seed=2014, strDose=1, chSize=3, trlSize=12,
++ numTrials=1, sdose=1:6, MaxCycle=5, tox.target=0.28,
++ control=control, iter=10, burnin=2, thin=1, chains=1,
++ pathout='./', tox.matrix=tox.matrix)
+=========================================================================================================================
+Operating characteristics based on 1 simulations:
+
+Sample size 12
+
+$op.table
+                 Dose 1 Dose 2 Dose 3 Dose 4 Dose 5 Dose 6
+Allocation %      0.333  0.667      0      0      0      0
+Recommendation %  0.000  1.000      0      0      0      0
+
+$sc
+        Dose 1 Dose 2 Dose 3 Dose 4 Dose 5 Dose 6
+mnTTP.1  0.083  0.110  0.146  0.192  0.247  0.309
+mnTTP.2  0.083  0.110  0.146  0.192  0.247  0.309
+mnTTP.3  0.083  0.110  0.146  0.192  0.247  0.309
+mnTTP.4  0.083  0.110  0.146  0.192  0.247  0.309
+mnTTP.5  0.083  0.110  0.146  0.192  0.247  0.309
+pDLT     0.046  0.066  0.097  0.146  0.221  0.332
 ```
