@@ -82,6 +82,9 @@ $allow.doses
 ```
 
 ## Simulate operating characteristics 
+
+Function SimRMDEFF(), in the package, runs simulations for an adaptive, multistage phase I dose-finding design incorporating a continuous efficacy outcome and toxicity data from multiple treatment cycles.
+
 ### Define prior distribution and toxicity matrix for simulation
 ```
 > #Define prior distributions
