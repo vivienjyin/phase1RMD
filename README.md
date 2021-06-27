@@ -1,5 +1,4 @@
-# phase1RMD
-phase1RMD R package
+# phase1RMD R package validation
 
 Author: Jun (Vivien) Yin
 
