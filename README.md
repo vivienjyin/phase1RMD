@@ -131,3 +131,9 @@ mnTTP.4  0.083  0.110  0.146  0.192  0.247  0.309
 mnTTP.5  0.083  0.110  0.146  0.192  0.247  0.309
 pDLT     0.046  0.066  0.097  0.146  0.221  0.332
 ```
+
+## phase1RMD implements the following validation measures to facilitate the process of validation and reproducibility:
+
+1.	CRAN releases: phase1RMD has been regularly published through CRAN (CRAN 2021) releases https://cran.r-project.org/web/packages/phase1RMD/index.html of updated versions, which enable quality control and testing of the published versions. New features of the software can be implemented and tested on GitHub before these new releases are published to CRAN.
+2.	Open-source development: The development of phase1RMD is available on a public GitHub.com repository (https://github.com/vivienjyin/phase1RMD). Anybody can freely download the source code, or utilize the other open source development features such as contribution to the codes by opening pull requests.
+3.	Online documentation & validation report: We utilize the standard documentation generated in CRAN to provide openly accessed manual and validation examples. We also utilize the free GitHub website service to provide validation documentation online. This includes testing example codes and expected testing results in a consistent and easily accessible format. 
