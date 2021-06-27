@@ -2,6 +2,12 @@
 
 Author: Jun (Vivien) Yin
 
+This is the validation report includes testing example data, codes and expected testing results.
+
+In addition to the repeated measures design with toxicity endpoint, we implemented the function RunRMDEFF() to conduct a trial with dual endpoints, incorporating a continuous efficacy outcome and toxicity endpoints in nTTP scores from multiple treatment cycles, according to the approach described above. The function RunRMDEFF() implements MCMC to draw the posterior inference about the parameters using JAGS , thus the posterior mean of toxicity and efficacy outcomes are used to estimate their profile at each dose level in the trial. Non-informative priors are used by default so that the estimation is largely dependent on data, but we reserve an option for user to specify a prior.
+
+The following example data is a scenario to validate the function RunRMDEFF() to recommend next dose:
+
 ## Load an example of the patient efficacy data
 ```
 > #load the patient efficacy data
