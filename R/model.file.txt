@@ -1,0 +1,15 @@
+model
+{
+    beta <- c(beta_other[1], beta_dose, beta_other[2])
+    for (i in 1:N1) {
+        y[i] ~ dnorm(mu[i], tau_e)
+        mu[i] <- inprod(X_y[i, ], beta) + inprod(W_y[i, ], u)
+    }
+    for (j in 1:N2) {
+        u[j] ~ dnorm(0.00000E+00, tau_u)
+    }
+    beta_other ~ dmnorm(p1_beta_other[], p2_beta_other[, ])
+    beta_dose ~ dunif(p1_beta_dose, p2_beta_dose)
+    tau_e ~ dunif(p1_tau_e, p2_tau_e)
+    tau_u ~ dunif(p1_tau_u, p2_tau_u)
+}

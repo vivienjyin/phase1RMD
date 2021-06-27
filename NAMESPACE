@@ -1,0 +1,12 @@
+export(parm, RunRMD, SimRMD, RunRMDEFF, SimRMDEFF, plot.RunRMDVal, Tox2nTTP, GenToxProb)
+import(coda, boot, rjags, mvtnorm, ggplot2)
+importFrom("arrayhelpers", "vec2array")
+importFrom("grDevices", "dev.off", "pdf")
+importFrom("graphics", "lines", "plot")
+importFrom("stats", "delete.response", "median", "model.frame",
+             "model.matrix", "model.response", "pnorm", "qnorm",
+             "quantile", "rbeta", "rgamma", "rnorm", "runif", "sd",
+             "terms", "update", "rmultinom")
+importFrom("utils", "write.table", "modifyList", "txtProgressBar", "setTxtProgressBar")
+importFrom("utils", "data")
+S3method(plot, RunRMDVal)
