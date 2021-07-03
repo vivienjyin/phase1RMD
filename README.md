@@ -4,9 +4,7 @@ Author: Jun (Vivien) Yin
 
 This is the validation report includes testing example data, codes and expected testing results.
 
-In addition to the repeated measures design with toxicity endpoint, we implemented the function RunRMDEFF() to conduct a trial with dual endpoints, incorporating a continuous efficacy outcome and toxicity endpoints in nTTP scores from multiple treatment cycles, according to the approach described above. The function RunRMDEFF() implements MCMC to draw the posterior inference about the parameters using JAGS , thus the posterior mean of toxicity and efficacy outcomes are used to estimate their profile at each dose level in the trial. Non-informative priors are used by default so that the estimation is largely dependent on data, but we reserve an option for user to specify a prior.
-
-The following example data is a scenario to validate the function RunRMDEFF() to recommend next dose:
+Our package is designed to conducted repeated measures design with dual toxicity & efficacy endpoint, which for example can be a continuous efficacy outcome and toxicity endpoints in nTTP scores from multiple treatment cycles. The function RunRMDEFF() implements MCMC to draw the posterior inference about the parameters using JAGS , thus the posterior mean of toxicity and efficacy outcomes are used to estimate their profile at each dose level in the trial. The following example data is a scenario to validate the function RunRMDEFF() to recommend next dose. Each subject's dose related efficacy and toxicity are listed as below:
 
 ## Load an example of the patient efficacy data
 ```
@@ -37,6 +35,9 @@ The following example data is a scenario to validate the function RunRMDEFF() to
 ```
 
 ## Recommend next dose based on toxicity and efficacy data
+
+Using the toxicity and efficacy as in the example above, the function \texttt{RunRMDEFF()} prints information regarding the trial and outputs a recommended dose for the next cohort of patients, along with the estimated toxicity/efficacy profile for each dose level under investigation, and the set of allowable (safe) doses at the current analysis. The function also outputs the boxplots about posterior estimates of nTTP scores for cycle 1 of the treatment as well as for late cycles, and about posterior estimates of efficacy outcome, across each dose under investigation. 
+
 ```
 > RunRMDEFF(efficacy.dat = eff_dat, toxicity.dat = tox_dat)
 Model : RMD with longitudinal toxicity
@@ -83,7 +84,7 @@ $allow.doses
 
 ## Simulate operating characteristics 
 
-Function SimRMDEFF(), in the package, runs simulations for an adaptive, multistage phase I dose-finding design incorporating a continuous efficacy outcome and toxicity data from multiple treatment cycles.
+Function SimRMDEFF(), in the package, runs simulations for an adaptive, multistage phase I dose-finding design incorporating a continuous efficacy outcome and toxicity data from multiple treatment cycles. Non-informative priors are used by default so that the estimation is largely dependent on data, but we reserve an option for user to specify a prior. The user can specify the prior distributions of the model parameters using argument \texttt{control}: \texttt{beta.dose} represents the dose effect, \texttt{beta.cycle} represents the cycle effect, \texttt{gamma} represents the random effect (random intercept), \texttt{s2.gamma} represents the variance of random effects, and \texttt{s2.epsilon} represents the variance of measurement errors. Without historical data to construct priors, non-informative priors can be used so that the estimation is largely dependent on data. The default choice is Normal priors for fixed effects and Inverse Gamma priors for variance parameters, and the users can modify the default priors in the \texttt{control} argument. To update the prior with data and draw posterior inference for the parameters, the MCMC algorithm is implemented, and the user can specify the MCMC parameters including \texttt{iter}: number of MCMC iterations; \texttt{burnin}: number of burn-ins; \texttt{thin}: thinning parameter and \texttt{chains}: number of chains. The \texttt{parm} function specifies the type of the prior distribution and its distribution parameters. Two types of distributions (‘normal’ and ‘invgamma’) are available, for which \texttt{mean} and \texttt{var} parameters are specified for the normal distribution; and \texttt{shape} and \texttt{scale}scale parameters are specified for the inverse gamma (‘invgamma’) distribution.
 
 ### Define prior distribution and toxicity matrix for simulation
 ```
