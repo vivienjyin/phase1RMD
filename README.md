@@ -105,7 +105,9 @@ Function `SimRMDEFF`, in the package, runs simulations for an adaptive, multista
 + cycle.gamma = 0)
 ```
 
+Function `SimRMD` in the package is able to assess the operating characteristics of the proposed RMD design under different scenarios. It has similar arguments as function `RunRMD`, except for a few parameters relating to the simulation.  The sample size of the simulated dataset is defined in the `trlSize` parameter and the size of each patient cohort is defined by `chSize`. The `numTrials` parameter specifies the number of simulated trials to assess the operating characteristics. Moreover, the following sets of parameters define the setting of the simulation, in which `strDose` defines the start dose, `sdose` defines the vector of available doses and `MaxCycle` defines the maximum treatment cycle. `tox.matrix` defines the probability matrix that generate the toxicity data for the corresponding scenario.
 
+The `SimRMD` function prints out the operating characteristics metric such as the percentage of dose allocation and the percentage of dose recommendation. To view the corresponding scenario for the simulation, the user can call the matrix in the `fit` object that contains the true mean nTTP scores across all cycles at each dose, as well as the true probability of DLT (defined at first cycle) at each dose. 
 
 ### Simulate trial characteristics, allocation, recommendation rate
 
